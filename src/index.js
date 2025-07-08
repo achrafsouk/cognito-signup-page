@@ -1,9 +1,11 @@
 const { CognitoIdentityProviderClient, SignUpCommand } = require("@aws-sdk/client-cognito-identity-provider");
 
+const custom_cognito_endpoint = "https://d3puaf34ylufas.cloudfront.net"
+
 // Configure the Cognito client
 const client = new CognitoIdentityProviderClient({
     region: "us-east-1",
-    endpoint : "https://d3puaf34ylufas.cloudfront.net",
+    endpoint : custom_cognito_endpoint,
 });
 
 // User Pool Client ID
