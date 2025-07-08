@@ -1,15 +1,17 @@
 const { CognitoIdentityProviderClient, SignUpCommand } = require("@aws-sdk/client-cognito-identity-provider");
 
-const custom_cognito_endpoint = "https://d3puaf34ylufas.cloudfront.net"
+const custom_cognito_endpoint = "https://yourdomain.cloudfront.net"
+
+const captcha_api_key ="jG/wcF/4VTzPN93vfdQSG...long string...DJwBe5ubCFM7DltNzkYW82C9s=_0_1";
+
+// User Pool Client ID
+const clientId = "5jffkijsulbgi2ti8es3feb431";
 
 // Configure the Cognito client
 const client = new CognitoIdentityProviderClient({
     region: "us-east-1",
     endpoint : custom_cognito_endpoint,
 });
-
-// User Pool Client ID
-const clientId = "5jffkijsulbgi2ti8es3feb431";
 
 // Function to handle form submission
 function handleSignup(event) {
@@ -41,7 +43,7 @@ function handleSignup(event) {
         console.log('rendering captcha');
         const container = document.getElementById('captcha');
         AwsWafCaptcha.renderCaptcha(container, {
-          apiKey: 'VBRcoCrEDIqQGj4hAf+YhNEKZVkUA0ypS4aVGMdVaurHuOhd0xrUSUPwkJopPHg8uU76OD7Osvk4xwDXcKI+bY4CULrljsg3vIgYgmlHsrdORxKCr/Z5BwX8jLiHHGW+LRJFbmeJtLYLDJNSntrItJom4FQqQfR4EzF0K0MoD6pkBvJRfrDeHU1Vsaurb0kXRBo+k/5JjF6Mrlza/vvJd3oZl5OOycVc9xQc3xHMOok2vmfEpkWskTb3ZcX6oRappTMF0qW5HEvM67kQi1TLJJd3gRmlknhUj+nJzBVgN3qYLHpXsvYAeiL0u/+KMCXakRcLQxDSQ/AWQKHRjukyq3TUitB8L3Qq6RKNKPCVrRA00uOnvm1bmIPIw1VKSG+Cm1/nYTBpMIVlvGssp2FOPVmS9wiNCsGbKJDlvBw3Cc0eumhOMKWzuCNamlFvBgAJeHOmvnXmgkR6g8ZImIlE0roHG7GJCHdmoHYTpxD9+pvXsdGlr8ea9l+q5+h2iB0jzifHsielyxAAdLvfMexqgVIiO7TIHWGONS6yKitzL5HHYxwDUL0vy2Lt0p72BnKn6mmYAB5e31/lrWZ1lScqyjbHy6A8Le7eBKrFb5JzgXwXlDpW31WVSCow6rJw6eNBT5DqOLaUyEv2U7t49vV5s5HNkZSdmdBPaqEol6hsCW4=_0_1',
+          apiKey: captcha_api_key,
             onSuccess: captchaSuccess,
             onError: captchaFailure,
         });
